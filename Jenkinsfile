@@ -3,7 +3,7 @@ pipeline {
 
       environment 
     {
-        PROJECT     = 'develop'
+        PROJECT     = 'php-todo'
         ECRURL      = '704771385539.dkr.ecr.us-east-1.amazonaws.com/php-todo'
         DEPLOY_TO = 'development'
     }
@@ -49,7 +49,7 @@ pipeline {
                     IMAGE = "$PROJECT:$VERSION"
                 }
             }
-      }
+      }   
 
     stage('Build For Dev Environment') {
                when { branch pattern: "^feature.*|^bug.*|^dev", comparator: "REGEXP"}
@@ -78,7 +78,7 @@ pipeline {
                 // sh "docker build --network=host -t $IMAGE -f deploy/docker/Dockerfile ."
                 sh "docker build --network=host -t $IMAGE ."
                 docker.withRegistry("https://$ECRURL"){
-                docker.image("$IMAGE").push("staging-$BUILD_NUMBER")
+                docker.image("$IMAGE").push("dev-staging-$BUILD_NUMBER")
                 }
             }
         }
