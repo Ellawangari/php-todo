@@ -26,7 +26,7 @@ pipeline {
         doGenerateSubmoduleConfigurations: false, 
         extensions: [],
         submoduleCfg: [], 
-        // branches: [[name: '$branch']],
+        branches: [[name: '$PROJECT']],
         userRemoteConfigs: [[url: "https://github.com/somex6/php-todo.git ",credentialsId:'46403133-dd7c-4075-ad1e-090584927bac']] 	
         ])
         
